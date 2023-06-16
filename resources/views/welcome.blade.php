@@ -481,7 +481,7 @@
                   referrerpolicy="no-referrer-when-downgrade" class="radius-image shadow"></iframe>
           </div>
           <div class="text-center">
-              <p class="mb-4">Harvest City Jl Raya Orchid A Setu-Bekasi 17320 pesantrenkoding@gmail.com(081 703 703 111). (08 212121 0078). (08 77 6142 4322)</p>
+              <p class="mb-4">Harvest City Jl Raya Orchid A Setu-Bekasi 17320 pesantrenkoding@gmail.com(081 703 703 111). (08 212121 0078). (08 77 6142 4322</p>
           </div>
 
       </div>
