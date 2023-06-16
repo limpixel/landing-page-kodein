@@ -18,7 +18,7 @@
           </ol>
           <div class="carousel-inner">
               <div class="carousel-item active">
-                  <img class="d-block w-100" src="{{ asset('public/images/carousel/image1.jpg') }}" alt="First slide"
+                  <img class="d-block w-100" src="{{ asset('images/carousel/image1.jpg') }}" alt="First slide"
                       style="height: 450px; max-width: 100%; object-fit: cover;">
                   <div class="carousel-caption d-md-block">
                       <h3>Penerimaan Peserta Didik Baru T.A 2023/2024</h3>
@@ -33,7 +33,7 @@
                   </div>
               </div>
               <div class="carousel-item">
-                  <img class="d-block w-100" src="{{ asset('public/images/carousel/image2.jpg') }}" alt="Second slide"
+                  <img class="d-block w-100" src="{{ asset('images/carousel/image2.jpg') }}" alt="Second slide"
                       style="height: 450px; max-width: 100%; object-fit: cover;">
                   <div class="carousel-caption d-md-block">
                       <h3>Penerimaan Peserta Didik Baru T.A 2023/2024</h3>
@@ -48,7 +48,7 @@
                   </div>
               </div>
               <div class="carousel-item">
-                  <img class="d-block w-100" src="{{ asset('public/images/carousel/image3.jpg') }}" alt="Third slide"
+                  <img class="d-block w-100" src="{{ asset('images/carousel/image3.jpg') }}" alt="Third slide"
                       style="height: 450px; max-width: 100%; object-fit: cover;">
                   <div class="carousel-caption d-md-block">
                       <h3>Penerimaan Peserta Didik Baru T.A 2023/2024</h3>
@@ -130,7 +130,7 @@
                       <p class="sub"> - Menumbuh kembangkan sikap dewasa, inisiatif dan kemandirian peserta didik.</p>
                   </div>
                   <div class="col-lg-6 mt-4">
-                      <img src="{{ asset('public/images/image-hero/image1.jpg') }}" alt=""
+                      <img src="{{ asset('images/image-hero/image1.jpg') }}" alt=""
                           class="radius-image gambar shadow w-100" style="height: 300px; object-fit: cover;">
                   </div>
               </div>
@@ -144,19 +144,19 @@
               <h1 class="mb-2 title text-center"> Keunggulan <span>Pembelajaran di </span> Pesantren Koding!</h1>
               <div class="row justify-content-center">
                   <div class="col-lg-2 mt-4">
-                      <img src="{{ asset('public/images/icon/icon-biru1.png') }}" alt="" class="radius-image shadow img-fluid">
+                      <img src="{{ asset('images/icon/icon-biru1.png') }}" alt="" class="radius-image shadow img-fluid">
                   </div>
                   <div class="col-lg-2 mt-4">
-                      <img src="{{ asset('public/images/icon/icon-biru2.png') }}" alt="" class="radius-image shadow img-fluid">
+                      <img src="{{ asset('images/icon/icon-biru2.png') }}" alt="" class="radius-image shadow img-fluid">
                   </div>
                   <div class="col-lg-2 mt-4">
-                      <img src="{{ asset('public/images/icon/icon-biru3.png') }}" alt="" class="radius-image shadow img-fluid">
+                      <img src="{{ asset('images/icon/icon-biru3.png') }}" alt="" class="radius-image shadow img-fluid">
                   </div>
                   <div class="col-lg-2 mt-4">
-                      <img src="{{ asset('public/images/icon/icon-biru4.png') }}" alt="" class="radius-image shadow img-fluid">
+                      <img src="{{ asset('images/icon/icon-biru4.png') }}" alt="" class="radius-image shadow img-fluid">
                   </div>
                   <div class="col-lg-2 mt-4">
-                      <img src="{{ asset('public/images/icon/icon-biru5.png') }}" alt="" class="radius-image shadow img-fluid">
+                      <img src="{{ asset('images/icon/icon-biru5.png') }}" alt="" class="radius-image shadow img-fluid">
                   </div>
               </div>
           </div>
@@ -178,7 +178,7 @@
                       <p class="sub"> - Fasilitas Olahraga.</p>
                   </div>
                   <div class="col-lg-6 mt-4">
-                      <img src="{{ asset('public/images/image-hero/image2.jpg') }}" alt=""
+                      <img src="{{ asset('images/image-hero/image2.jpg') }}" alt=""
                           class="radius-image gambar shadow w-100" style="height: 300px; object-fit: cover;">
                   </div>
               </div>
@@ -191,7 +191,7 @@
           <div class="container py-lg-5 py-md-3">
               <div class="row align-items-center">
                   <div class="col-lg-6 mt-4">
-                      <img src="{{ asset('public/images/image-hero/image3.jpg') }}" alt=""
+                      <img src="{{ asset('images/image-hero/image3.jpg') }}" alt=""
                           class="radius-image gambar shadow w-100" style="height: 300px; object-fit: cover;">
                   </div>
                   <div class="col-lg-6 col-sm-12">
@@ -272,7 +272,7 @@
                       <p class="sub mb-2">keistimewaan pesantren koding adalah pada pola pembelajaran 80% praktek dan 20% teori dimana peserta didik akan memiliki kompetensi siap kerja bersertifikasi  sehingga dapat langsung terjun ke industri atau menjadi seorang technopreneur. Syarat peserta didik adalah yang memiliki ketertarikan pada teknologi dan ingin mengembangkan karir nya pada industri teknologi informasi, baik sebagai pekerja maupun sebagai seorang technopreneur.</p>
                   </div>
                   <div class="col-lg-6">
-                      <img src="{{ asset('public/images/image-hero/image5.jpg') }}" alt=""
+                      <img src="{{ asset('images/image-hero/image5.jpg') }}" alt=""
                           class="radius-image gambar shadow w-100" style="height: 300px; object-fit: cover;">
                   </div>
 
@@ -286,7 +286,7 @@
           <div class="container py-lg-5 py-md-3">
               <div class="row align-items-center">
                   <div class="col-lg-6">
-                      <img src="{{ asset('public/images/image-hero/image6.jpg') }}" alt=""
+                      <img src="{{ asset('images/image-hero/image6.jpg') }}" alt=""
                           class="radius-image gambar shadow w-100" style="height: 300px; object-fit: cover;">
                   </div>
                   <div class="col-lg-6 col-sm-12">
@@ -309,7 +309,7 @@
                         Pesantren Koding Mempersiapkan Siswa yang siap kerja dan siap kuliah</p>
                   </div>
                   <div class="col-lg-6">
-                      <img src="{{ asset('public/images/image-hero/image7.jpg') }}" alt=""
+                      <img src="{{ asset('images/image-hero/image7.jpg') }}" alt=""
                           class="radius-image gambar shadow w-100" style="height: 300px; object-fit: cover;">
                   </div>
 
@@ -323,7 +323,7 @@
           <div class="container py-lg-5 py-md-3">
               <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <img src="{{ asset('public/images/image-hero/image8.jpg') }}" alt=""
+                    <img src="{{ asset('images/image-hero/image8.jpg') }}" alt=""
                         class="radius-image gambar shadow w-100" style="height: 300px; object-fit: cover;">
                 </div>
                   <div class="col-lg-6 col-sm-12">
@@ -347,7 +347,7 @@
                       <p class="sub mb-2">Pesantren Koding Memberikan Pembekalan Tahsin dan Tahfidz Alquran sebagai bekal mereka menjadi imam didalam keluarga</p>
                   </div>
                 <div class="col-lg-6">
-                    <img src="{{ asset('public/images/image-hero/image9.jpg') }}" alt=""
+                    <img src="{{ asset('images/image-hero/image9.jpg') }}" alt=""
                         class="radius-image gambar shadow w-100" style="height: 300px; object-fit: cover;">
                 </div>
 
@@ -366,19 +366,19 @@
                   <div class="col-md-12 ">
                       <div class="owl-two owl-carousel owl-theme">
                           <div class="item">
-                              <img src="{{ asset('public/images/galery/galery1.jpg') }}" alt=""
+                              <img src="{{ asset('images/galery/galery1.jpg') }}" alt=""
                                   class="radius-image w-100 shadow" style="height: 300px; object-fit: cover;">
                           </div>
                           <div class="item">
-                              <img src="{{ asset('public/images/galery/galery2.jpg') }}" alt=""
+                              <img src="{{ asset('images/galery/galery2.jpg') }}" alt=""
                                   class="radius-image w-100 shadow" style="height: 300px; object-fit: cover;">
                           </div>
                           <div class="item">
-                              <img src="{{ asset('public/images/galery/galery3.jpg') }}" alt=""
+                              <img src="{{ asset('images/galery/galery3.jpg') }}" alt=""
                                   class="radius-image w-100 shadow" style="height: 300px; object-fit: cover;">
                           </div>
                        	  <div class="item">
-                              <img src="{{ asset('public/images/galery/galery4.jpg') }}" alt=""
+                              <img src="{{ asset('images/galery/galery4.jpg') }}" alt=""
                                   class="radius-image w-100 shadow" style="height: 300px; object-fit: cover;">
                           </div>
                       </div>
@@ -454,16 +454,16 @@
               <h1 class="mb-2 title text-center"> Biaya Pendidikan</h1>
               <div class="row justify-content-center">
                   <div class="col-lg-3 mt-4">
-                    <img src="{{ asset('public/images/harga/price1.png') }}" alt="" class="radius-image shadow img-fluid">
+                    <img src="{{ asset('images/harga/price1.png') }}" alt="" class="radius-image shadow img-fluid">
                   </div>
                   <div class="col-lg-3 mt-4">
-                    <img src="{{ asset('public/images/harga/price2.png') }}" alt="" class="radius-image shadow img-fluid">
+                    <img src="{{ asset('images/harga/price2.png') }}" alt="" class="radius-image shadow img-fluid">
                   </div>
                   <div class="col-lg-3 mt-4">
-                    <img src="{{ asset('public/images/harga/price3.png') }}" alt="" class="radius-image shadow img-fluid">
+                    <img src="{{ asset('images/harga/price3.png') }}" alt="" class="radius-image shadow img-fluid">
                   </div>
                   <div class="col-lg-3 mt-4">
-                    <img src="{{ asset('public/images/harga/price4.png') }}" alt="" class="radius-image shadow img-fluid">
+                    <img src="{{ asset('images/harga/price4.png') }}" alt="" class="radius-image shadow img-fluid">
                   </div>
               </div>
           </div>

@@ -13,7 +13,7 @@
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('public/css/style-starter.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style-starter.css') }}">
     @yield('css')
     @yield('js')
 </head>
@@ -27,7 +27,7 @@
                     Kodein.
                 </a> --}}
                 <a class="navbar-brand" href="#index.html">
-                    <img src="{{ asset('public/images/logo/logo2.png') }}" alt="Your logo" title="Your logo" style="height:55px;" />
+                    <img src="{{ asset('images/logo/logo2.png') }}" alt="Your logo" title="Your logo" style="height:55px;" />
                 </a>
                 <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
                     data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
@@ -130,10 +130,10 @@
 
     <!-- all js scripts and files here -->
 
-    <script src="{{ asset('public/js/jquery-3.3.1.min.js') }}"></script><!-- default jQuery -->
+    <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script><!-- default jQuery -->
 
     <!-- services owlcarousel -->
-    <script src="{{ asset('public/js/owl.carousel.js') }}"></script>
+    <script src="{{ asset('js/owl.carousel.js') }}"></script>
 
     <!-- script for services -->
     <script>
@@ -242,7 +242,7 @@
     <!--//MENU-JS-->
 
     <!-- bootstrap js -->
-    <script src="{{ asset('public/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 
 
 </body>
