@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Landing\ComponentController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Backend\Component\DescriptionController;
+use App\Models\Description;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +20,10 @@ use App\Http\Controllers\Auth\LoginController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $data = [
+        'description' => Description::get(),
+    ];
+    return view('welcome', $data);
 });
 
 // Route::get('/', function () {
@@ -38,3 +43,10 @@ Route::get('/landing/component/{componentid?}', [ComponentController::class, 'in
 Route::post('/landing/component/get_content', [ComponentController::class, 'get_content'])->name('component.get_content');
 Route::post('/landing/component/edit_content', [ComponentController::class, 'edit_content'])->name('component.edit_content');
 Route::post('/landing/component/create_content', [ComponentController::class, 'create_content'])->name('component.create_content');
+
+Route::get('/backend/description', [DescriptionController::class, 'index'])->name('backend.description');
+Route::get('/backend/create/description', [DescriptionController::class, 'create'])->name('backend.description.create');
+Route::post('/backend/create/description', [DescriptionController::class, 'store'])->name('backend.description.create.process');
+Route::get('/backend/edit/description/{id?}', [DescriptionController::class, 'edit'])->name('backend.description.edit');
+Route::post('/backend/edit/description/{id?}', [DescriptionController::class, 'edit_process'])->name('backend.description.edit.process');
+Route::delete('/backend/delete/description/{id?}', [DescriptionController::class, 'destroy'])->name('backend.description.delete');
