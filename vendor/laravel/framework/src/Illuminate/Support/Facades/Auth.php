@@ -95,5 +95,4 @@ class Auth extends Facade
 
         static::$app->make('router')->auth($options);
     }
- 
 }
