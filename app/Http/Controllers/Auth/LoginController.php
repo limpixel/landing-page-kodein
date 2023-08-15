@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Header;
+use App\Models\LandingPage;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -36,5 +39,16 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function index(Request $request)
+    {
+        $domain = $request->getHttpHost();
+        
+        $landingPage = LandingPage::where('domain', $domain)->first();
+        $idLembaga = $landingPage->id_lembaga;
+        $header = Header::where('id_lembaga',$idLembaga)->get();
+    
+        return view('auth.login', compact('header'));
     }
 }

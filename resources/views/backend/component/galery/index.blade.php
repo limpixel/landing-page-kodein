@@ -1,4 +1,4 @@
-@extends('layouts.admin_landing')
+@extends('layouts.app')
 
 @section('title')
     Galery | Backend

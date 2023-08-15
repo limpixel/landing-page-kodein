@@ -9,7 +9,11 @@ class Description extends Model
 {
     use HasFactory;
 
+    protected $table = "descriptions";
+
     protected $fillable = [
+        'id_lembaga',
+        'bgColor',
         'title',
         'description',
         'link',
@@ -17,4 +21,8 @@ class Description extends Model
         'video',
         'position',
     ];
+
+    public function idLembaga(){
+        return $this->belongsToMany(Lembaga::class,'descriptions', 'id', 'id_lembaga');
+    }
 }

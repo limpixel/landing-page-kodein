@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('descriptions', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_lembaga')->default(0);
+            $table->string('bgColor');
             $table->string('title');
             $table->longText('description');
             $table->string('link')->nullable();
@@ -20,6 +22,8 @@ return new class extends Migration
             $table->string('video')->nullable();
             $table->string('position');
             $table->timestamps();
+
+            $table->foreign('id_lembaga')->references('id')->on('lembagas')->onDelete('cascade');
         });
     }
 

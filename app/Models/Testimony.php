@@ -9,9 +9,16 @@ class Testimony extends Model
 {
     use HasFactory;
 
-    protected $fillabel = [
+    protected $table = "testimonies";
+
+    protected $fillable = [
+        'id_lembaga',
+        'image',
         'name',
         'description',
-        'image',
     ];
+
+    public function idLembaga(){
+        return $this->belongsToMany(Lembaga::class,'testimonies', 'id', 'id_lembaga');
+    }
 }

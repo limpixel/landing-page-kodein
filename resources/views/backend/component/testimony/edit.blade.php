@@ -2,20 +2,36 @@
 @section('title')
     testimony | Edit #ID {{ $testimony->id }}
 @endsection
+@section('css')
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<style>
+    .select2-container .select2-selection--single { height: 37px; font-size: .875rem; }
+    .select2-container--default .select2-selection--single .select2-selection__rendered { line-height: 37px; }
+    .select2-container--default .select2-selection--single .select2-selection__arrow { height: 37px; }
+    .select2-container--default .select2-selection--single { border-radius: 0.375rem; border: 1px solid #ced4da; }
+    .select2-container--default .select2-results__option--selected { font-size: .875rem; }
+    .select2-results__option--selectable { font-size: .875rem; }
+</style>
+@endsection
+
 @section('js')
+
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script>
+        $(function () {
+            $('textarea[name=description]').summernote({height: 200});
+            $('textarea[name=title]').summernote({height: 50});
+        });
+    </script>
+
     <script>
         $(function(){
-            $('input[name="fullname"]').on('keyup', function(){
-                let Text = $(this).val();
-
-                Text = Text.toLowerCase();
-                Text = Text.replace(/[^a-zA-Z0-9]+/g,'-');
-
-                $('input[name="slug"]').val(Text);
-                $('input[name=foto]').change(function(){
+            $('input[name="image"]').change(function(){
                 imagePreview(this);
             });
-            })
         })
         function imagePreview(input){
             if (input.files && input.files[0]) {
@@ -30,6 +46,7 @@
             }
         }
     </script>
+
 @endsection
 @section('content')
     <div class="container">
@@ -43,6 +60,7 @@
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                                     <div class="mb-3">
+                                        <input type="hidden" name="id_lembaga" value="{{ $landingPage->id_lembaga }}">
                                         <label for="name" class="form-label">
                                             Nama
                                         </label>
@@ -52,21 +70,19 @@
                                         @enderror
                                     </div>
                                     <div class="mb-3">
-                                        <label for="description" class="form-label">
-                                            description
+                                        <label for="image" class="form-label">
+                                            Photo Profile
                                         </label>
-                                        <input type="text" name="description" value="{{ $testimony->description }}" placeholder="description" class="form-control @error('description') is-invalid @enderror">
-                                        @error('description')
-                                            <small class="text-danger">{!! $message !!}</small>
+                                        @error('image')
+                                        <div class="text-danger small" >{!! $message !!}</div>
                                         @enderror
+                                        <input type="file" name="image" id="image" class="form-control">
+                                        <img src="{{ asset('images/testimoni') . '/' . $testimony->image }}" class="img-thumbnail mt-3 mb-3 w-20" id="preview">
                                     </div>
                                     <div class="mb-3">
-                                        <div class="mb-2 @error('image') text-danger fw-bold @enderror">Image:</div>
-                                        <input class="form-control" type="file" name="image" id="image">
-                                        <div class="mb-3">
-                                            <img src="{{ asset('images/testimony/'.$testimony->image) }}" class="w-25" id="preview">
-                                        </div>
-                                        @error('image')
+                                        <div class="mb-2 @error('description') text-danger fw-bold @enderror">Description:</div>
+                                        <textarea class="form-control @error('description') text-danger fw-bold @enderror" name="description" placeholder="Description">{!! $testimony->description !!}</textarea>
+                                        @error('description')
                                             <small class="text-danger">{!! $message !!}</small>
                                         @enderror
                                     </div>

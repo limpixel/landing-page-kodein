@@ -9,7 +9,14 @@ class Galery extends Model
 {
     use HasFactory;
 
-    protected $fillabel = [
+    protected $table = "galeries";
+
+    protected $fillable = [
+        'id_lembaga',
         'image',
     ];
+
+    public function idLembaga(){
+        return $this->belongsToMany(Lembaga::class,'galeries', 'id', 'id_lembaga');
+    }
 }

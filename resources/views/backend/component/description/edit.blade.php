@@ -1,4 +1,4 @@
-@extends('layouts.admin_landing')
+@extends('layouts.app')
 @section('title')
     Description | Edit #ID {{ $description->id }}
 @endsection
@@ -23,6 +23,7 @@
     <script>
         $(function () {
             $('textarea[name=description]').summernote({height: 200});
+            $('textarea[name=title]').summernote({height: 50});
         });
     </script>
 
@@ -55,15 +56,26 @@
                 <div class="card">
                     <div class="card-header">Description | Edit #ID {{ $description->id }}</div>
                     <div class="card-body">
+                        @if (session()->has('error'))
+                            <p class="text-danger">{{ session('error') }}</p>
+                        @endif
                         <form action="{{ route('backend.description.edit.process', $description->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                                     <div class="mb-3">
-                                        <label for="title" class="form-label">
-                                            Title
+                                        <input type="hidden" name="id_lembaga" value="{{ $landingPage->id_lembaga }}">
+                                        <label for="bgColor" class="form-label">
+                                            Bakcground Color
                                         </label>
-                                        <input type="text" name="title" value="{{ $description->title }}" placeholder="Title" class="form-control @error('title') is-invalid @enderror">
+                                        <input type="text" name="bgColor" value="{{ $description->bgColor }}" placeholder="#000000 or rgba(0,0,0,0)" class="form-control @error('bgColor') is-invalid @enderror">
+                                        @error('bgColor')
+                                            <small class="text-danger">{!! $message !!}</small>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="mb-2 @error('title') text-danger fw-bold @enderror">Title:</div>
+                                        <textarea class="form-control @error('title') text-danger fw-bold @enderror" name="title" placeholder="title">{!! $description->title !!}</textarea>
                                         @error('title')
                                             <small class="text-danger">{!! $message !!}</small>
                                         @enderror
@@ -93,8 +105,8 @@
                                           </ul>
                                           <div class="tab-content" id="myTabContent">
                                             <div class="tab-pane fade show active" id="image" role="tabpanel" aria-labelledby="image-tab">
-                                                <input type="file" name="image" id="image" class="form-control">
-                                                <img src="{{ asset('images/description') . '/' . $description->image }}" class="img-thumbnail mt-3 mb-3 d-none w-50" id="preview">
+                                                <input value="{{ asset('images/description') . '/' . $description->image }}" type="file" name="image" id="image" class="form-control" >
+                                                <img src="{{ asset('images/description') . '/' . $description->image }}" class="img-thumbnail mt-3 mb-3 w-50" id="preview">
                                                 @error('image')
                                                 <div class="text-danger small" >{!! $message !!}</div>
                                                 @enderror
@@ -116,8 +128,8 @@
                                             <option value="{{ $description->position }}">{{ $description->position }}</option>
                                             <option>Right</option>
                                             <option>Left</option>
-                                            {{-- <option>Top</option>
-                                            <option>Bottom</option> --}}
+                                            <option>Top</option>
+                                            <option>Bottom</option>
                                         </select>
                                         @error('position')
                                             <small class="text-danger">{!! $message !!}</small>

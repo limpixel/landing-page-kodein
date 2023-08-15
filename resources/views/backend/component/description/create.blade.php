@@ -1,4 +1,4 @@
-@extends('layouts.admin_landing')
+@extends('layouts.app')
 
 @section('title')
     Description | Create
@@ -18,36 +18,46 @@
 @endsection
 
 @section('js')
-
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
     <script>
-        $(function () {
-            $('textarea[name=description]').summernote({height: 200});
-        });
-    </script>
-
-    <script>
-        $(function(){
-            $('input[name="image"]').change(function(){
-                imagePreview(this);
+        $(function() {
+            $('input[name="fullname"]').on('keyup', function() {
+                let Text = $(this).val();
+                Text = Text.toLowerCase();
+                Text = Text.replace(/[^a-zA-Z0-9]+/g, '-');
+                $('input[name="slug"]').val(Text);
             });
-        })
-        function imagePreview(input){
+
+            // Move the image preview registration inside the document ready function
+            $('input[name=image1]').change(function() {
+                imagePreview(this, "#preview1");
+            });
+            $('input[name=image2]').change(function() {
+                imagePreview(this, "#preview2");
+            });
+            $('input[name=image3]').change(function() {
+                imagePreview(this, "#preview3");
+            });
+            $('input[name=image4]').change(function() {
+                imagePreview(this, "#preview4");
+            });
+            $('input[name=image5]').change(function() {
+                imagePreview(this, "#preview5");
+            });
+        });
+
+        function imagePreview(input, previewId) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
 
-                reader.onload = function(e){
-                    $("#preview").removeClass("d-none");
-                    $("#preview").attr("src",e.target.result);
+                reader.onload = function(e) {
+                    $(previewId).removeClass("d-none");
+                    $(previewId).attr("src", e.target.result);
                 }
 
                 reader.readAsDataURL(input.files[0]);
             }
         }
     </script>
-
 @endsection
 
 @section('content')
@@ -62,10 +72,18 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-12  col-md-12 mb-3">
                                 <div class="mb-3">
-                                    <label for="fullname" class="form-label">
-                                        Title
+                                    <input type="hidden" name="id_lembaga" value="{{ $landingPage->id_lembaga }}">
+                                    <label for="bgColor" class="form-label">
+                                        Background Color
                                     </label>
-                                    <input type="text" name="title" value="{{ old('title') }}" placeholder="Title" class="form-control @error('title') is-invalid @enderror">
+                                    <input type="text" name="bgColor" value="{{ old('bgColor') }}" placeholder="#0000 or rgba(0,0,0,0)" class="form-control @error('bgColor') is-invalid @enderror">
+                                    @error('bgColor')
+                                        <small class="text-danger">{!! $message !!}</small>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <div class="mb-2 @error('title') text-danger fw-bold @enderror">Title:</div>
+                                    <textarea class="form-control @error('title') text-danger fw-bold @enderror" name="title" placeholder="title"></textarea>
                                     @error('title')
                                         <small class="text-danger">{!! $message !!}</small>
                                     @enderror
@@ -117,8 +135,8 @@
                                     <select class="select2 form-control" name="position" class="">
                                         <option>Right</option>
                                         <option>Left</option>
-                                        {{-- <option>Top</option>
-                                        <option>Bottom</option> --}}
+                                        <option>Top</option>
+                                        <option>Bottom</option>
                                     </select>
                                     @error('position')
                                         <small class="text-danger">{!! $message !!}</small>

@@ -70,13 +70,13 @@ hr {
   height: 0;
   overflow: visible; }
 
-.w3l-index3.bg-orange{
+/* .w3l-index3.bg-orange{
 background-color: #FDF6F2;
 }
 
 .w3l-index3.bg-blue{
 background-color: #F0F6FB;
-}
+} */
 
 .w3l-index3 h1, h2, h3, h4, h5, h6{
   margin-top: 0;
@@ -85,9 +85,7 @@ background-color: #F0F6FB;
 
   .w3l-index3 h1.title {
     font-size: 28px;
-    color: #f37d2e;
-    line-height: 1.2;
-    font-weight: 600; }
+    line-height: 1.2; }
 
   .w3l-index3 h1.title span {
     font-weight: 300; }

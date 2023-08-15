@@ -13,10 +13,13 @@ return new class extends Migration
     {
         Schema::create('testimonies', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_lembaga')->default(0);
+            $table->string('image');
             $table->string('name');
             $table->longText('description');
-            $table->string('image');
             $table->timestamps();
+
+            $table->foreign('id_lembaga')->references('id')->on('lembagas')->onDelete('cascade');
         });
     }
 

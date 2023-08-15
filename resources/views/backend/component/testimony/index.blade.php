@@ -1,4 +1,4 @@
-@extends('layouts.admin_landing')
+@extends('layouts.app')
 
 @section('title')
     Testimony | Backend
@@ -56,8 +56,8 @@
                             <tbody>
                                 <th>{{ $loop->iteration }}</th>
                                 <td>{{ $item->name }}</td>
-                                <td>{{ $item->description }}</td>
-                                <td class="w-25"><img src="{{ asset('images/testimony') . '/' . $item->image }}" alt="" class="img-thumbnail"></td>
+                                <td>{!! $item->description !!}</td>
+                                <td class="w-25"><img src="{{ asset('images/testimoni') . '/' . $item->image }}" alt="" class="img-thumbnail"></td>
                                 <td>
                                     <a href="{{ route('backend.testimony.edit' , $item->id) }}" class="btn btn-sm btn-success"><i class="fas fa-pencil-alt pe-1"></i> Edit</a>
                                     <form action="{{ route('backend.testimony.delete', $item->id) }}" method="post" class="d-inline">

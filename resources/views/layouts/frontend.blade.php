@@ -26,9 +26,11 @@
                 {{-- <a class="navbar-brand" href="index.html">
                     Kodein.
                 </a> --}}
-                <a class="navbar-brand" href="#index.html">
-                    <img src="{{ asset('images/logo/logo2.png') }}" alt="Your logo" title="Your logo" style="height:55px;" />
-                </a>
+                @foreach ($landing as $item)  
+                    <a class="navbar-brand" href="/">
+                        <img src="{{ asset('images/logo') . '/' . $item->logo }}" alt="Your logo" title="Your logo" />
+                    </a>
+                @endforeach
                 <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
                     data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -38,17 +40,13 @@
                 
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="/">BERANDA <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item @@about__active">
-                            <a class="nav-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeDoavH5vKqE2XnzlsBcVWbXnT8_1TLnpy7546eoF9wYgAYEA/viewform?embedded=true">DAFTAR</a>
-                        </li>
-                        <li class="nav-item @@about__active">
-                            <a class="nav-link" href="https://wa.me/6281703703111">KONTAK</a>
-                        </li>
-                      	 <li class="nav-item">
-                            <a class="btn btn-primary btn-style" href="{{ route ('login') }}">Login</a>
+                        @foreach ($header as $item)     
+                            <li class="nav-item {{ $loop->first ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ $item->buttonLink }}">{{ $item->buttonText }} <span class="sr-only">{{ $loop->first ? '(current)' : '' }}</span></a>
+                            </li>
+                        @endforeach
+                        <li class="nav-item">
+                            <a class="btn btn-primary btn-style" href="{{ route('login') }}">Login</a>
                         </li>
                     </ul>
                 </div>

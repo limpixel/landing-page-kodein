@@ -43,6 +43,7 @@
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                                     <div class="mb-3">
+                                        <input type="hidden" name="id_lembaga" value="{{ $landingPage->id_lembaga }}">
                                         <div class="mb-2 @error('image') text-danger fw-bold @enderror">Image:</div>
                                         <input class="form-control" type="file" name="image" id="image">
                                         <div class="mb-3">

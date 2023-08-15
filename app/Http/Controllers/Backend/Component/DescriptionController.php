@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend\Component;
 
 use App\Http\Controllers\Controller;
 use App\Models\Description;
+use App\Models\LandingPage;
 use Illuminate\Http\Request;
 
 class DescriptionController extends Controller
@@ -13,34 +14,46 @@ class DescriptionController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(){
-        $description = Description::get();
+    public function index(Request $request){
+        $domain = $request->getHttpHost();
+        
+        if ($landingPage = LandingPage::where('domain', $domain)->first()) {
+            $idLembaga = $landingPage->id_lembaga;
+            $description = Description::where('id_lembaga',$idLembaga)->orderBy('id')->get();
+        }
         return view('backend.component.description.index', compact('description'));
     }
 
-    public function create(){
+    public function create(Request $request){
         $description = Description::get();
-        return view('backend.component.description.create', compact('description'));
+
+        $domain = $request->getHttpHost();
+
+        $landingPage = LandingPage::where('domain', $domain)->first();
+
+        return view('backend.component.description.create', compact(['description', 'landingPage']));
     }
 
     public function store(Request $request)
     {
         request()->validate([
+            'id_lembaga'              => 'required',
+            'bgColor'              => 'required',
             'title'              => 'required',
             'description'        => 'required',
+            'image'        => 'nullable|max:2048|mimes:jpg,jpeg,png',
             'position'        => 'required',
         ]);
 
-        if (Description::find('image') != null) {
+        $image = null;
+        if ($request->hasFile('image')) {
             $image = time() . '.' . $request->image->extension();
             $request->image->move(public_path('images/description'), $image);
-        } else {
-            $image = null;
         }
         
-       
-
         Description::create([
+            'id_lembaga'   => $request->id_lembaga,
+            'bgColor'   => $request->bgColor,
             'title'   => $request->title,
             'description'   => $request->description,
             'link'   => $request->link,
@@ -52,14 +65,18 @@ class DescriptionController extends Controller
         return redirect()->route('backend.description')->with('success', 'Item Created Successfully');
     }
 
-    public function edit($id){
+    public function edit($id, Request $request){
         if ($id == null) {
             return redirect()->route('backend.description')->with('error', 'The ID is empty!');
         } else {
             $description = Description::find($id);
 
+            $domain = $request->getHttpHost();
+
+            $landingPage = LandingPage::where('domain', $domain)->first();
+
             if ($description) {
-                return view('backend.component.description.edit', compact('description'));
+                return view('backend.component.description.edit', compact(['description','landingPage']));
             } else {
                 return redirect()->route('backend.description')->with('error', "The #ID {$id} not found in Database!");
             }
@@ -68,27 +85,25 @@ class DescriptionController extends Controller
 
     public function edit_process(Request $request){
         request()->validate([
-            'title'         => 'required',
-            'description'         => 'required',
-            'image'         => 'max:2048|mimes:jpg,jpeg,png',
-            'position'         => 'required',
+            'image'        => 'nullable|max:2048|mimes:jpg,jpeg,png',
         ]);
 
         $description = Description::find($request->id);
 
-        if (Description::find('image') != null) {
+        $image = $description->image;
+
+        if ($request->hasFile('image')) {
             if (public_path('images/description/'. $description->image))
             unlink(public_path('images/description/'.$description->image));
 
             $image = time() . '.' . $request->image->extension();
             $request->image->move(public_path('images/description'), $image);
-        } else {
-            $image = null;
         }
-       
 
         Description::where('id', $request->id)
             ->update(([
+                'id_lembaga'         => $request->id_lembaga,
+                'bgColor'         => $request->bgColor,
                 'title'         => $request->title,
                 'description'   => $request->description,
                 'link'   => $request->link,

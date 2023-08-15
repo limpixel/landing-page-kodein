@@ -1,4 +1,4 @@
-@extends('layouts.admin_landing')
+@extends('layouts.app')
 
 @section('title')
     Testimony | Create
@@ -6,8 +6,6 @@
 
 @section('css')
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
-{{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"> --}}
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <style>
     .select2-container .select2-selection--single { height: 37px; font-size: .875rem; }
@@ -20,47 +18,45 @@
 @endsection
 
 @section('js')
-    {{-- <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script> --}}
+  <script>
+      $('.carousel').carousel()
+  </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-    <script>
-        $(function () {
-            $('textarea[name=description]').summernote({height: 200});
-        });
-    </script>
+  <script>
+      $(function () {
+          $('textarea[name=description]').summernote({
+              height: 200
+          });
+          $('textarea[name=title]').summernote({
+              height: 50
+          });
+      });
+  </script>
 
-    <script>
-        $(function(){
-            $('input[name="fullname"]').on('keyup', function(){
-                let Text = $(this).val();
+  <script>
+      $(function () {
+          $('input[name="image"]').change(function () {
+              imagePreview(this);
+          });
+      })
 
-                Text = Text.toLowerCase();
-                Text = Text.replace(/[^a-zA-Z0-9]+/g,'-');
+      function imagePreview(input) {
+          if (input.files && input.files[0]) {
+              var reader = new FileReader();
 
-                $('input[name="slug"]').val(Text);
-                $('input[name=foto]').change(function(){
-                imagePreview(this);
-            });
-            })
-        })
-        function imagePreview(input){
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
+              reader.onload = function (e) {
+                  $("#preview").removeClass("d-none");
+                  $("#preview").attr("src", e.target.result);
+              }
 
-                reader.onload = function(e){
-                    $("#preview").removeClass("d-none");
-                    $("#preview").attr("src",e.target.result);
-                }
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-    </script>
-
-@endsection
+              reader.readAsDataURL(input.files[0]);
+          }
+      }
+  </script>
+  @endsection
 
 @section('content')
 <div class="container">
@@ -74,6 +70,7 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-12  col-md-12 mb-3">
                                 <div class="mb-3">
+                                    <input type="hidden" name="id_lembaga" value="{{ $landingPage->id_lembaga }}">
                                     <label for="fullname" class="form-label">
                                         Name
                                     </label>
@@ -83,22 +80,20 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3">
-                                    <label for="description" class="form-label">
-                                        Description
-                                    </label>
-                                    <input type="text" name="description" value="{{ old('description') }}" placeholder="Description" class="form-control @error('description') is-invalid @enderror">
-                                    @error('description')
-                                        <small class="text-danger">{!! $message !!}</small>
-                                    @enderror
-                                </div>
-                                <div class="mb-3">
                                     <label for="image" class="form-label">
-                                        Image
+                                        Photo Profile
                                     </label>
                                     <input type="file" name="image" id="image" class="form-control">
                                     <img src="" class="img-thumbnail mt-3 mb-3 d-none w-50" id="preview">
                                     @error('image')
                                     <div class="text-danger small" >{!! $message !!}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <div class="mb-2 @error('description') text-danger fw-bold @enderror">Description:</div>
+                                    <textarea class="form-control @error('description') text-danger fw-bold @enderror" name="description" placeholder="Description"></textarea>
+                                    @error('description')
+                                        <small class="text-danger">{!! $message !!}</small>
                                     @enderror
                                 </div>
 
