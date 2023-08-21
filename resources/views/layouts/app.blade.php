@@ -86,6 +86,8 @@
                         <a class="bg-white card card-body mb-2" href="{{ route('backend.location') }}">Location</a>
                         <a class="bg-white card card-body mb-2" href="{{ route('backend.biaya') }}">Biaya</a>
                         <a class="bg-white card card-body mb-2" href="{{ route('backend.keunggulan') }}">Keunggulan</a>
+                        <a class="bg-white card card-body mb-2" href="{{ route('backend.categories') }}">Categories</a>
+                        <a class="bg-white card card-body mb-2" href="{{ route('backend.artikel') }}">Artikel</a>
                         <div class="bg-white card card-body mb-2">Footer</div>
                     </ul>
                 </div>

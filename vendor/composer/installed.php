@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '0081e60e758231d10179fb7fc17a87837caab538',
+        'reference' => '6cdfde63ed10017494cab3e6a6d1490a19756abb',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -373,7 +373,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '0081e60e758231d10179fb7fc17a87837caab538',
+            'reference' => '6cdfde63ed10017494cab3e6a6d1490a19756abb',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -973,15 +973,6 @@
             'install_path' => __DIR__ . '/../spatie/laravel-permission',
             'aliases' => array(),
             'dev_requirement' => false,
-        ),
-        'sven/artisan-view' => array(
-            'pretty_version' => 'v3.6.0',
-            'version' => '3.6.0.0',
-            'reference' => 'a6e3a374a093278946114cb38e69678ffdf7119e',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../sven/artisan-view',
-            'aliases' => array(),
-            'dev_requirement' => true,
         ),
         'symfony/console' => array(
             'pretty_version' => 'v6.2.10',

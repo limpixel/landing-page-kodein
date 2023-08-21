@@ -16,9 +16,10 @@ trait AuthenticatesUsers
      *
      * @return \Illuminate\View\View
      */
-    public function showLoginForm()
+    public function showLoginForm(Request $request)
     {
-        return view('auth.login');
+        $domain = $request->getHttpHost();
+        return view('auth.login', compact('domain'));
     }
 
     /**

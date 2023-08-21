@@ -18,6 +18,11 @@ use App\Http\Controllers\Backend\Component\LocationController;
 use App\Http\Controllers\Backend\Component\TestimonyController;
 use App\Http\Controllers\Backend\LandingPageController;
 use App\Http\Controllers\Backend\LembagaController;
+
+// Categories & Artikel
+use App\Http\Controllers\Backend\Component\CategoriesController as CategoriesController;
+use App\Http\Controllers\Backend\Component\ArtikelController;
+
 use App\Models\Biaya;
 use App\Models\Carousel;
 use App\Models\Description;
@@ -160,3 +165,16 @@ Route::post('/backend/create/lembaga', [LembagaController::class, 'store'])->nam
 Route::get('/backend/edit/lembaga/{id?}', [LembagaController::class, 'edit'])->name('backend.lembaga.edit');
 Route::post('/backend/edit/lembaga/{id?}', [LembagaController::class, 'edit_process'])->name('backend.lembaga.edit.process');
 Route::delete('/backend/delete/lembaga/{id?}', [LembagaController::class, 'destroy'])->name('backend.lembaga.delete');
+
+// ROUTE BACKEND CATEGORIES
+Route::get('/backend/categories', [CategoriesController::class, 'index'])->name('backend.categories');
+Route::get('/backend/create/categories', [CategoriesController::class, 'create'])->name('backend.categories.create');
+Route::post('/backend/create/process/categories', [CategoriesController::class, 'create_process'])->name('backend.categories.create.process');
+Route::get('/backend/edit/categories/{id?}', [CategoriesController::class, 'edit'])->name('backend.categories.edit');
+Route::post('/backend/edit/process/categories/{id?}', [CategoriesController::class, 'edit_process'])->name('backend.categories.process.edit');
+Route::delete('/backend/delete/categories/{id?}', [CategoriesController::class, 'destroy'])->name('backend.categories.delete');
+
+// ROUTE BCAKEND ARTIKELS 
+Route::get('/backend/artikel', [ArtikelController::class, 'index'])->name('backend.artikel');
+Route::get('/backend/create/artikel', [ArtikelController::class, 'create'])->name('backend.create.artikel');
+Route::post('/backend/create/process/artikel', [ArtikelController::class, 'create_process'])->name('backend.create.process.artikel');
