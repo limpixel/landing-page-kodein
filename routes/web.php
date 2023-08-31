@@ -178,3 +178,6 @@ Route::delete('/backend/delete/categories/{id?}', [CategoriesController::class, 
 Route::get('/backend/artikel', [ArtikelController::class, 'index'])->name('backend.artikel');
 Route::get('/backend/create/artikel', [ArtikelController::class, 'create'])->name('backend.create.artikel');
 Route::post('/backend/create/process/artikel', [ArtikelController::class, 'create_process'])->name('backend.create.process.artikel');
+Route::get('/backend/edit/artikel/{id?}', [ArtikelController::class, 'edit'])->name('backend.edit.artikel');
+Route::post('/backend/edit/process/artikel/{id?}', [ArtikelController::class, 'edit_process'])->name('backend.edit.process.artikel');
+Route::delete('/backend/delete/artikel/{id?}', [ArtikelController::class, 'destroy'])->name('backend.delete.artikel');

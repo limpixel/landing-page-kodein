@@ -24,16 +24,26 @@
 
     <script>
         $(function () {
-            $('textarea[name=description]').summernote({height: 200});
+            $('textarea[name=content]').summernote({height: 200});
         });
     </script>
 
     <script>
         $(function(){
+
+            $('input[name="title"]').on('keyup', function() {
+                let Text = $(this).val();
+                Text = Text.toLowerCase();
+                Text = Text.replace(/[^a-zA-Z0-9]+/g, '-');
+                $('input[name="slug"]').val(Text);
+            });
+
             $('input[name="image"]').change(function(){
                 imagePreview(this);
             });
         })
+
+        
         function imagePreview(input){
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
@@ -48,32 +58,91 @@
         }
     </script>
 
+    <script>
+        // In your Javascript (external .js resource or <script> tag)
+        $(document).ready(function() {
+            $('.js-example-basic-single').select2();
+
+            $(".js-example-tags").select2({
+                tags: true
+            });
+        });
+
+        
+
+    </script>
+
 @endsection
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('Artikel | Create') }}</div>
                 <div class="card-body">
                     <form id="contactForm" action="{{ route('backend.create.process.artikel') }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        <input type="hidden" name="id_lembaga" value="{{ old('title') }}" placeholder="Title" class="form-control @error('title') is-invalid @enderror">
+                        
+                        
                         <div class="row">
                             <div class="col-xs-12 col-sm-12  col-md-12 mb-3">
+                                
                                 <div class="mb-3">
                                     <input type="hidden" name="id_lembaga" value="{{ $landingPage->id_lembaga }}">
-                                    <label for="title" class="form-label">
-                                        Title
+                                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+
+
+                                    <label for="title" class="form-label  @error('status') text-danger fw-bold @enderror">
+                                        Status
                                     </label>
-                                    <input type="text" name="title" value="{{ old('title') }}" placeholder="Title" class="form-control @error('title') is-invalid @enderror">
-                                    @error('title')
+                                    <input type="text" name="status" value="{{ old('status') }}" placeholder="Status" class="form-control @error('status') is-invalid @enderror">
+                                    @error('status')
                                         <small class="text-danger">{!! $message !!}</small>
                                     @enderror
                                 </div>
+
+                                
+                                <div style="display: flex; flex-direction: column" class="mb-3">
+                                    <label  class="form-label">
+                                        Categories
+                                    </label>
+                                    
+                                    
+
+                                    <select class="form-control js-example-tags mb-3" name="category_id" multiple="multiple">    
+                                        @foreach ($categories as $item )
+                                            <option value="{{$item->id}}">{{$item->name}}</option>
+                                        @endforeach
+                                    </select>
+
+                                    @error('categories')
+                                        <div class="text-danger small" >{!! $message !!}</div>
+                                    @enderror
+                                </div>
+
+                                {{-- Lembaga --}}
                                 <div class="mb-3">
-                                    <label for="image" class="form-label">
+
+                                    <label  class="form-label">
+                                        Lembaga
+                                    </label>
+
+                                    <select class="form-control js-example-tags mb-3" name="id_lembaga" multiple="multiple">    
+                                        @foreach ($lembaga as $item )
+                                            <option value="{{$item->id}}">{{$item->nama_lembaga}}</option>
+                                        @endforeach
+                                    </select>
+
+                                    @error('lembaga')
+                                        <div class="text-danger small" >{!! $message !!}</div>
+                                    @enderror
+
+                                </div>
+
+                                
+                                <div class="mb-3">
+                                    <label for="image" class="form-label @error('title') text-danger fw-bold @enderror">
                                         Image
                                     </label>
                                     <input type="file" name="image" id="image" class="form-control">
@@ -82,44 +151,51 @@
                                     <div class="text-danger small" >{!! $message !!}</div>
                                     @enderror
                                 </div>
+
+
                                 <div class="mb-3">
-                                    Button 1<span class="text-danger">*optional</span>
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="mb-2 @error('buttonText1') text-danger fw-bold @enderror">Text:</div>
-                                            <input type="text" name="buttonText1" value="{{ old('buttonText1') }}" placeholder="Text" class="form-control @error('buttonText1') is-invalid @enderror">
-                                            @error('buttonText1')
-                                                <small class="text-danger">{!! $message !!}</small>
-                                            @enderror
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="mb-2 @error('buttonLink1') text-danger fw-bold @enderror">Link:</div>
-                                            <input type="text" name="buttonLink1" value="{{ old('buttonLink1') }}" placeholder="Link" class="form-control @error('buttonLink1') is-invalid @enderror">
-                                            @error('buttonLink1')
-                                                <small class="text-danger">{!! $message !!}</small>
-                                            @enderror
-                                        </div>
-                                    </div>
+                                    
+                                    <label for="title" class="form-label  @error('title') text-danger fw-bold @enderror">
+                                        Title
+                                    </label>
+                                    <input type="text" name="title" value="{{ old('title') }}" placeholder="Title" class="form-control @error('title') is-invalid @enderror">
+                                    @error('title')
+                                        <small class="text-danger">{!! $message !!}</small>
+                                    @enderror
                                 </div>
+
                                 <div class="mb-3">
-                                    Button 2<span class="text-danger">*optional</span>
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="mb-2 @error('buttonText2') text-danger fw-bold @enderror">Text:</div>
-                                            <input type="text" name="buttonText2" value="{{ old('buttonText2') }}" placeholder="Text" class="form-control @error('buttonText2') is-invalid @enderror">
-                                            @error('buttonText2')
-                                                <small class="text-danger">{!! $message !!}</small>
-                                            @enderror
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="mb-2 @error('buttonLink2') text-danger fw-bold @enderror">Link:</div>
-                                            <input type="text" name="buttonLink2" value="{{ old('buttonLink2') }}" placeholder="Link" class="form-control @error('buttonLink2') is-invalid @enderror">
-                                            @error('buttonLink2')
-                                                <small class="text-danger">{!! $message !!}</small>
-                                            @enderror
-                                        </div>
-                                    </div>
+                                    <div class="mb-2 @error('slug') text-danger fw-bold @enderror">Slug :</div>
+                                    <input type="text" name="slug" value="{{ old('slug') }}" placeholder="slug" class="form-control @error('slug') is-invalid @enderror">
+                                    @error('slug')
+                                        <small class="text-danger">{!! $message !!}</small>
+                                    @enderror
                                 </div>
+
+                                <div class="mb-3">
+                                    <div class="mb-2 @error('description') text-danger fw-bold @enderror">Description :</div>
+                                    <textarea class="form-control @error('description') text-danger fw-bold @enderror" name="description" placeholder="description Here" >{{ old('description') }}</textarea>
+                                    @error('description')
+                                        <small class="text-danger">{!! $message !!}</small>
+                                    @enderror
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="mb-2 @error('content') text-danger fw-bold @enderror">Content :</div>
+                                    <textarea class="form-control @error('content') text-danger fw-bold @enderror" name="content" placeholder="content">{{ old('content') }}</textarea>
+                                    @error('content')
+                                        <small class="text-danger">{!! $message !!}</small>
+                                    @enderror
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="mb-2 @error('views') text-danger fw-bold @enderror">Views :</div>
+                                    <input type="text" name="views" value="{{ old('views') }}" placeholder="views" class="form-control @error('views') is-invalid @enderror">
+                                    @error('views')
+                                        <small class="text-danger">{!! $message !!}</small>
+                                    @enderror
+                                </div>
+                                
 
                                 <button class="btn btn-primary btn-xl" id="submitButton" type="submit">Create</button>
                             </div>

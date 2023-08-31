@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('status');
             $table->unsignedBigInteger('user_id')->default(0);
             $table->unsignedBigInteger('category_id')->default(0);
-            $table->unsignedBigInteger('lembaga_id')->default(0);
+            $table->unsignedBigInteger('id_lembaga')->default(0);
             $table->string('title');
             $table->string('slug');
             $table->string('image');
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->integer('views');
             $table->timestamps();
 
-            $table->foreign('lembaga_id')->references('id')->on('lembagas')->onDelete('cascade');
+            $table->foreign('id_lembaga')->references('id')->on('lembagas')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });

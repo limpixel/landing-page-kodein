@@ -9,10 +9,13 @@ class Artikel extends Model
 {
     use HasFactory;
 
+    protected $table = "artikels";
+
     protected $fillable = [
         'status',
         'user_id',
         'category_id',
+        'id_lembaga',
         'title',
         'slug',
         'image',
@@ -20,4 +23,17 @@ class Artikel extends Model
         'content',
         'views',
     ];
+
+    public function userID(){
+        return $this->belongsToMany(User::class, 'artikels','id', 'user_id');
+    }
+
+    public function lembagaID(){
+        return $this->belongsToMany(Lembaga::class,'artikels','id', 'id_lembaga');
+    }
+
+    public function categoryID(){
+        return $this->belongsToMany(Categories::class, 'artikels', 'id', 'category_id');
+    }
+
 }

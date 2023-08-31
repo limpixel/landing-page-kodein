@@ -28,7 +28,7 @@
             <div class="card mb-4">
                 <div class="card-header ">
                     {{ __('Artikel | Dashboard') }}
-                    <a href="{{ route('backend.categories.create') }}" class=" btn btn-sm btn-success">Create</a>
+                    <a href="{{ route('backend.create.artikel') }}" class=" btn btn-sm btn-success">Create</a>
                 </div>
 
                 <div class="card-body">
@@ -67,13 +67,15 @@
                                 <td>{{ $item->category_id }}</td>
                                 <td>{{ $item->title  }}</td>
                                 <td>{{ $item->slug  }}</td>
-                                <td>{{ $item->image  }}</td>
+                                <td> 
+                                    <img style="width: 100px " src="{{asset('images/artikel/'. '/' . $item->image)}}" alt="">
+                                </td>
                                 <td>{{ $item->description  }}</td>
-                                <td>{{ $item->content  }}</td>
+                                <td class="">{{ $item->content  }}</td>
                                 <td>{{ $item->views  }}</td>
                                 <td>
-                                    <a href="{{route('backend.categories.edit', $item->id )}}" class="btn btn-sm btn-success"><i class="fas fa-pencil-alt pe-1"></i> Edit</a>
-                                    <form action="{{route('backend.categories.delete', $item->id)}}" method="post" class="d-inline">
+                                    <a href="{{route('backend.edit.artikel', $item->id)}}" class="btn btn-sm btn-success"><i class="fas fa-pencil-alt pe-1"></i> Edit</a>
+                                    <form action="{{route('backend.delete.artikel', $item->id)}}" method="post" class="d-inline">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-sm btn-danger">
